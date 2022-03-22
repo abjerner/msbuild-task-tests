@@ -1,0 +1,7 @@
+.vs/
+ConsoleApp1/bin/
+ConsoleApp1/obj/
+MyCustomPackage.cs/obj/
+MyCustomPackage.cs/bin/
+MyCustomTask/bin/
+MyCustomTask/obj/

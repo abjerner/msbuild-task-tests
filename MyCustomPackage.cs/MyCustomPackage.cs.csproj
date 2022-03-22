@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net46</TargetFrameworks>
+  </PropertyGroup>
+
+	<PropertyGroup Condition=" '$(MSBuildRuntimeType)' == 'Core'">
+		<TaskAssembly>D:\Testing\MyCustomTask\MyCustomTask\bin\Debug\netstandard1.6\MyCustomTask.dll</TaskAssembly>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(MSBuildRuntimeType)' != 'Core'">
+		<TaskAssembly>D:\Testing\MyCustomTask\MyCustomTask\bin\Debug\net46\MyCustomTask.dll</TaskAssembly>
+	</PropertyGroup>
+
+	<UsingTask TaskName="MergeAppSettings" AssemblyFile="$(TaskAssembly)" />
+	
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="echo &quot;postBuild&quot;" />
+		<MergeAppSettings Name="uSync" Schema="/App_Plugins/uSync/config/appsettings-usync-schema.json" />
+		<MergeAppSettings Name="Limbo" Schema="/App_Plugins/Limbo.Umbraco.YouTube/config/appsettings-schema.json" />
+	</Target>
+
+</Project>
